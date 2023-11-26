@@ -5,18 +5,13 @@ import (
 	"time"
 )
 
-func reader() string {
-	var data string
-	fmt.Scan(&data)
-	return data
-}
-
-func printer(message string) {
-	fmt.Println(message)
-}
-
-// declaracao de uma classe
 type Player struct {
+	Name   string
+	Health int
+	Damage int
+}
+
+type NPC struct {
 	Name   string
 	Health int
 	Damage int
@@ -30,18 +25,22 @@ func NewPlayer(name string) Player {
 	}
 }
 
-type NPC struct {
-	Name   string
-	Health int
-	Damage int
-}
-
 func NewNPC(name string, damage, health int) NPC {
 	return NPC{
 		Name:   name,
 		Damage: damage,
 		Health: health,
 	}
+}
+
+func reader() string {
+	var data string
+	fmt.Scan(&data)
+	return data
+}
+
+func printer(message string) {
+	fmt.Println(message)
 }
 
 func await() {
@@ -52,11 +51,15 @@ func main() {
 	var player Player
 
 	printer("Ola jogador, qual é seu nome?")
+
 	playerName := reader()
+
 	printer("Prazer em lhe conhecer " + playerName)
 
 	printer("Você gostaria de jogar um joguin?")
+
 	printer("[s/n]")
+
 	playerResponse := reader()
 
 	player = NewPlayer(playerName)
@@ -77,11 +80,11 @@ func main() {
 	printer("[E no meio da escuridão, você se deparou com um cachorro falante...]")
 
 	dog := `
-			/ \__
-			(    @\___
-			/         O
-			/   (_____/
-			/_____/   U
+		/ \__
+		(    @\___
+		/         O
+		/   (_____/
+		/_____/   U
 	`
 
 	printer(dog)
@@ -102,8 +105,11 @@ func main() {
 		player.Health -= 1
 
 		printer("[Você magoou os sentimentos do dog magico...]")
+
 		printer("[O universo lhe atingiu com uma rajada de vento e você perdeu 1 de vida]")
+
 		message := fmt.Sprintf("[Você agora possui apenas %v de vida]", player.Health)
+
 		printer(message)
 	}
 
@@ -118,14 +124,15 @@ func main() {
 	badCat := NewNPC("bad cat", 1, 3)
 
 	cat := `
-	../\_/\  
-	.( o.o ) 
-	..> ^ <
+		../\_/\  
+		.( o.o ) 
+		..> ^ <
 	`
 
 	printer(cat)
 
 	badCatMessage := fmt.Sprintf("[%v] ora ora ora, veja quem eu encontrei...", badCat.Name)
+
 	await()
 
 	printer(badCatMessage)
@@ -143,6 +150,7 @@ func main() {
 	player.Health -= badCat.Damage
 
 	printer("O que você pretende fazer?")
+
 	printer("[correr/revidar]")
 
 	choice := reader()
